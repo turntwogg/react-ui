@@ -13,7 +13,7 @@ const withTheme = WrappedComponent => {
     }
   }
 
-  hoistNonReactStatics(HOC, Component);
+  hoistNonReactStatics(HOC, WrappedComponent);
 
   return HOC;
 };
