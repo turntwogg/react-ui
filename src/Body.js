@@ -12,7 +12,7 @@ const Body = ({ children }) => (
             margin: 0;
             font-size: 1rem;
             font-family: ${theme.fonts.primary};
-            line-height: ${baseSpacingUnit / baseFontSize};
+            line-height: ${theme.baseSpacingUnit / theme.baseFontSize};
           }
         `}</style>
       </body>

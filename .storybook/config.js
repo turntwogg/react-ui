@@ -1,6 +1,6 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
-import { ThemeProvider, Reset } from '../src';
+import { ThemeProvider, Body, Reset } from '../src';
 // automatically import all files ending in *.stories.js
 const req = require.context('../stories', true, /.stories.js$/);
 function loadStories() {
@@ -10,7 +10,7 @@ function loadStories() {
 addDecorator(story => (
   <ThemeProvider>
     <Reset />
-    {story()}
+    <Body>{story()}</Body>
   </ThemeProvider>
 ));
 
