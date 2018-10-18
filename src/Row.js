@@ -1,23 +1,19 @@
 import React from 'react';
 
-import WithTheme from './WithTheme';
+import withTheme from './withTheme';
 
-const Row = ({ children }) => (
-  <WithTheme>
-    {theme => (
-      <div className="row">
-        {children}
-        <style jsx>{`
-          .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-left: ${theme.baseSpacingUnit / -2}px;
-            margin-right: ${theme.baseSpacingUnit / -2}px;
-          }
-        `}</style>
-      </div>
-    )}
-  </WithTheme>
+const Row = ({ children, theme }) => (
+  <div className="row">
+    {children}
+    <style jsx>{`
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: ${theme.baseSpacingUnit / -2}px;
+        margin-right: ${theme.baseSpacingUnit / -2}px;
+      }
+    `}</style>
+  </div>
 );
 
-export default Row;
+export default withTheme(Row);

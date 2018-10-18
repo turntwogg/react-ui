@@ -1,23 +1,19 @@
 import React from 'react';
 
-import WithTheme from './WithTheme';
+import withTheme from './withTheme';
 
-const Body = ({ children }) => (
-  <WithTheme>
-    {theme => (
-      <body>
-        {children}
-        <style jsx>{`
-          body {
-            margin: 0;
-            font-size: 1rem;
-            font-family: ${theme.fonts.primary};
-            line-height: ${theme.baseSpacingUnit / theme.baseFontSize};
-          }
-        `}</style>
-      </body>
-    )}
-  </WithTheme>
+const Body = ({ children, theme }) => (
+  <body>
+    {children}
+    <style jsx>{`
+      body {
+        margin: 0;
+        font-size: 1rem;
+        font-family: ${theme.fonts.primary};
+        line-height: ${theme.baseSpacingUnit / theme.baseFontSize};
+      }
+    `}</style>
+  </body>
 );
 
-export default Body;
+export default withTheme(Body);

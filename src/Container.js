@@ -1,22 +1,18 @@
 import React from 'react';
 
-import WithTheme from './WithTheme';
+import withTheme from './withTheme';
 
-const Container = ({ children }) => (
-  <WithTheme>
-    {theme => (
-      <div className="container">
-        {children}
-        <style jsx>{`
-          .container {
-            max-width: ${theme.maxWidth}px;
-            margin-right: auto;
-            margin-left: auto;
-          }
-        `}</style>
-      </div>
-    )}
-  </WithTheme>
+const Container = ({ children, theme }) => (
+  <div className="container">
+    {children}
+    <style jsx>{`
+      .container {
+        max-width: ${theme.maxWidth}px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    `}</style>
+  </div>
 );
 
-export default Container;
+export default withTheme(Container);
