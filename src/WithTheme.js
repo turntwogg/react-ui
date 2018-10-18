@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import ThemeContext from './ThemeContext';
 
 const withTheme = WrappedComponent => {
@@ -11,6 +12,9 @@ const withTheme = WrappedComponent => {
       );
     }
   }
+
+  hoistNonReactStatics(HOC, Component);
+
   return HOC;
 };
 
