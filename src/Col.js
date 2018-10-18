@@ -7,21 +7,21 @@ const Col = styled.div`
 
   ${props =>
     props.sm &&
-    `@media (min-width: ${props.theme.breakpoints[sm]}px) {
+    `@media (min-width: ${props.theme.breakpoints.sm}px) {
       flex-basis: ${(props.sm / 12) * 100}%;
       width: ${(props.sm / 12) * 100}%;
       }`};
 
   ${props =>
     props.m &&
-    `@media (min-width: ${props.theme.breakpoints[m]}px) {
+    `@media (min-width: ${props.theme.breakpoints.m}px) {
       flex-basis: ${(props.m / 12) * 100}%;
       width: ${(props.m / 12) * 100}%;
     }`};
 
   ${props =>
     props.l &&
-    `@media (min-width: ${props.theme.breakpoints[l]}px {
+    `@media (min-width: ${props.theme.breakpoints.l}px {
       flex-basis: ${(props.l / 12) * 100}%;
       width: ${(props.l / 12) * 100}%;
     }`};

@@ -1,6 +1,6 @@
 {
   "name": "@turntwo/react-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Reusable React UI components",
   "main": "dist/index.js",
   "scripts": {
@@ -23,9 +23,7 @@
     "url": "https://github.com/turntwogg/react-ui/issues"
   },
   "homepage": "https://github.com/turntwogg/react-ui#readme",
-  "dependencies": {
-    "react": "^16.5.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
@@ -41,6 +39,7 @@
     "react-dom": "^16.5.2"
   },
   "peerDependencies": {
+    "react": "^16.5.2",
     "styled-components": "^4.0.0"
   }
 }
