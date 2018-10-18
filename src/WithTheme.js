@@ -1,8 +1,8 @@
 import React from 'react';
-import { ThemeConsumer } from 'styled-components';
+import ThemeContext from './ThemeContext';
 
 const WithTheme = ({ children }) => (
-  <ThemeConsumer>{theme => children(theme)}</ThemeConsumer>
+  <ThemeContext.Consumer>{theme => children(theme)}</ThemeContext.Consumer>
 );
 
 export default WithTheme;

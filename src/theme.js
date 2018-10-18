@@ -1,7 +1,8 @@
 const theme = {
+  baseFontSize: 16,
   baseSpacingUnit: 24,
   maxWidth: 1200,
-  font: {
+  fonts: {
     primary: "'Helvetica', sans-serif",
     secondary: 'Georgia, serif',
   },

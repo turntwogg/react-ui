@@ -1,11 +1,12 @@
 import React from 'react';
-import { ThemeProvider as StyledThemeProvider } from 'styled-components';
+
+import ThemeContext from './ThemeContext';
 
 import defaultTheme from './theme';
 
 const ThemeProvider = ({ children, theme }) => {
   const t = { ...defaultTheme, ...theme };
-  return <StyledThemeProvider theme={t}>{children}</StyledThemeProvider>;
+  return <ThemeContext.Provider value={t}>{children}</ThemeContext.Provider>;
 };
 
 ThemeProvider.defaultProps = {

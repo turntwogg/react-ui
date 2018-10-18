@@ -1,10 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const Container = styled.div`
-  max-width: ${props => props.theme.maxWidth}px;
-  margin-right: auto;
-  margin-left: auto;
-`;
+import WithTheme from './WithTheme';
+
+const Container = ({ children }) => (
+  <WithTheme>
+    {theme => (
+      <div className="container">
+        {children}
+        <style jsx>{`
+          .container {
+            max-width: ${theme.maxWidth}px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+        `}</style>
+      </div>
+    )}
+  </WithTheme>
+);
 
 export default Container;
