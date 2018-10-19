@@ -56,7 +56,7 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, sizes, theme, ...rest }) => {
+const Col = ({ children, className, sizes, theme, ...rest }) => {
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
   );
@@ -65,12 +65,13 @@ const Col = ({ children, sizes, theme, ...rest }) => {
   const rNames = resolved.map(r => r.className).join(' ');
   const rStyles = resolved.map(r => r.styles);
   return (
-    <div className={classNames('col', cNames, rNames)} {...rest}>
+    <div className={classNames('col', className, cNames, rNames)} {...rest}>
       {children}
       <style jsx>{`
         .col {
           flex-basis: 100%;
           width: 100%;
+          margin-bottom: ${theme.baseSpacingUnit}px;
           padding: 0 ${theme.baseSpacingUnit / 2}px;
         }
       `}</style>
