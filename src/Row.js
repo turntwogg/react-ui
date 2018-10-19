@@ -2,8 +2,8 @@ import React from 'react';
 
 import withTheme from './withTheme';
 
-const Row = ({ children, theme }) => (
-  <div className="row">
+const Row = ({ children, theme, ...rest }) => (
+  <div className="row" {...rest}>
     {children}
     <style jsx>{`
       .row {

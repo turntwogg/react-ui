@@ -1,23 +1,71 @@
 import React from 'react';
 import classNames from 'classnames';
+import { resolve } from 'styled-jsx/css';
+import PropTypes from 'prop-types';
 
 import withTheme from './withTheme';
 
-const getWidths = size =>
-  `
-    flex-basis: ${(size / 12) * 100}%;
-    width: ${(size / 12) * 100}%;
-  `;
+const getWidths = size => `
+  flex-basis: ${(size / 12) * 100}%;
+  width: ${(size / 12) * 100}%;
+`;
 
-const Col = ({ children, sm, m, l, theme }) => {
+const getResponsiveStyles = theme => {
+  const bps = Object.keys(theme.breakpoints);
+  return bps.map(
+    bp => resolve`
+    @media (min-width: ${theme.breakpoints[bp]}px) {
+      .col--${bp}-1 {
+        ${getWidths(1)}
+      }
+      .col--${bp}-2 {
+        ${getWidths(2)}
+      }
+      .col--${bp}-3 {
+        ${getWidths(3)}
+      }
+      .col--${bp}-4 {
+        ${getWidths(4)}
+      }
+      .col--${bp}-5 {
+        ${getWidths(5)}
+      }
+      .col--${bp}-6 {
+        ${getWidths(6)}
+      }
+      .col--${bp}-7 {
+        ${getWidths(7)}
+      }
+      .col--${bp}-8 {
+        ${getWidths(8)}
+      }
+      .col--${bp}-9 {
+        ${getWidths(9)}
+      }
+      .col--${bp}-10 {
+        ${getWidths(10)}
+      }
+      .col--${bp}-11 {
+        ${getWidths(11)}
+      }
+      .col--${bp}-12 {
+        ${getWidths(12)}
+      }
+    }
+  `,
+  );
+};
+
+const Col = ({ children, sizes, theme, ...rest }) => {
+  const bps = Object.keys(sizes).filter(bp =>
+    theme.breakpoints.hasOwnProperty(bp),
+  );
+  const cNames = bps.map(bp => `col--${bp}-${sizes[bp]}`).join(' ');
+  const resolved = getResponsiveStyles(theme);
+  const rNames = resolved.map(r => r.className).join(' ');
+  const rStyles = resolved.map(r => r.styles);
   return (
-    <div
-      className={classNames('col', {
-        [`col--sm-${sm}`]: sm,
-        [`col--m-${m}`]: m,
-        [`col--m-${l}`]: l,
-      })}
-    >
+    <div className={classNames('col', cNames, rNames)} {...rest}>
       {children}
       <style jsx>{`
         .col {
@@ -25,125 +73,18 @@ const Col = ({ children, sm, m, l, theme }) => {
           width: 100%;
           padding: 0 ${theme.baseSpacingUnit / 2}px;
         }
-
-        @media (min-width: ${theme.breakpoints.sm}px) {
-          .col--sm-1 {
-            ${getWidths(1)};
-          }
-          .col--sm-2 {
-            ${getWidths(2)};
-          }
-          .col--sm-3 {
-            ${getWidths(3)};
-          }
-          .col--sm-4 {
-            ${getWidths(4)};
-          }
-          .col--sm-5 {
-            ${getWidths(5)};
-          }
-          .col--sm-6 {
-            ${getWidths(6)};
-          }
-          .col--sm-7 {
-            ${getWidths(7)};
-          }
-          .col--sm-8 {
-            ${getWidths(8)};
-          }
-          .col--sm-9 {
-            ${getWidths(9)};
-          }
-          .col--sm-10 {
-            ${getWidths(10)};
-          }
-          .col--sm-11 {
-            ${getWidths(11)};
-          }
-          .col--sm-12 {
-            ${getWidths(12)};
-          }
-        }
-
-        @media (min-width: ${theme.breakpoints.m}px) {
-          .col--m-1 {
-            ${getWidths(1)};
-          }
-          .col--m-2 {
-            ${getWidths(2)};
-          }
-          .col--m-3 {
-            ${getWidths(3)};
-          }
-          .col--m-4 {
-            ${getWidths(4)};
-          }
-          .col--m-5 {
-            ${getWidths(5)};
-          }
-          .col--m-6 {
-            ${getWidths(6)};
-          }
-          .col--m-7 {
-            ${getWidths(7)};
-          }
-          .col--m-8 {
-            ${getWidths(8)};
-          }
-          .col--m-9 {
-            ${getWidths(9)};
-          }
-          .col--m-10 {
-            ${getWidths(10)};
-          }
-          .col--m-11 {
-            ${getWidths(11)};
-          }
-          .col--m-12 {
-            ${getWidths(12)};
-          }
-
-        @media (min-width: ${theme.breakpoints.l}px) {
-          .col--l-1 {
-            ${getWidths(1)};
-          }
-          .col--l-2 {
-            ${getWidths(2)};
-          }
-          .col--l-3 {
-            ${getWidths(3)};
-          }
-          .col--l-4 {
-            ${getWidths(4)};
-          }
-          .col--l-5 {
-            ${getWidths(5)};
-          }
-          .col--l-6 {
-            ${getWidths(6)};
-          }
-          .col--l-7 {
-            ${getWidths(7)};
-          }
-          .col--l-8 {
-            ${getWidths(8)};
-          }
-          .col--l-9 {
-            ${getWidths(9)};
-          }
-          .col--l-10 {
-            ${getWidths(10)};
-          }
-          .col--l-11 {
-            ${getWidths(11)};
-          }
-          .col--l-12 {
-            ${getWidths(12)};
-          }
-        }
       `}</style>
+      {rStyles.map(style => style)}
     </div>
   );
+};
+
+Col.defaultProps = {
+  sizes: {},
+};
+
+Col.propTypes = {
+  sizes: PropTypes.object,
 };
 
 export default withTheme(Col);
