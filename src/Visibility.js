@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { resolve } from 'styled-jsx/css';
 
-import withTheme from './withTheme';
+import useTheme from './useTheme';
 
 const getResponsiveStyles = theme => {
   const bps = Object.keys(theme.breakpoints);
@@ -10,19 +10,30 @@ const getResponsiveStyles = theme => {
     bp => resolve`
       @media (min-width: ${theme.breakpoints[bp]}px) {
         .visibility-visible-${bp} {
-          position: static !important;
+          position: static;
+          width: auto;
+          height: auto;
+          margin: initial;
           clip: initial;
         }
 
         .visibility-hidden-${bp} {
-          position: absolute !important;
-          clip: rect(1px, 1px, 1px, 1px);
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          white-space: nowrap;
         }
       }`,
   );
 };
 
-const Visibility = ({ children, hidden, visible, theme, ...rest }) => {
+const Visibility = ({ children, hidden, visible, ...rest }) => {
+  const theme = useTheme();
   const hiddenClass = Array.isArray(hidden)
     ? hidden
         .filter(h => theme.breakpoints.hasOwnProperty(h))
@@ -46,8 +57,15 @@ const Visibility = ({ children, hidden, visible, theme, ...rest }) => {
       {children}
       <style jsx>{`
         .visibility-hidden {
-          position: absolute !important;
-          clip: rect(1px, 1px, 1px, 1px);
+          border: 0;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+          white-space: nowrap;
         }
       `}</style>
       {rStyles.map(style => style)}
@@ -60,4 +78,4 @@ Visibility.defaultProps = {
   visible: [],
 };
 
-export default withTheme(Visibility);
+export default Visibility;

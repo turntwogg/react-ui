@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { Container, Row, Col, ThemeProvider } from '../src';
+import { Container, Row, Col } from '../src';
 
 const colStyles = { backgroundColor: '#ccc' };
 
 storiesOf('Grid', module).add('Default', () => (
   <Container>
-    <Row>
+    <Row gutter={0}>
       <Col sizes={{ sm: 4, m: 6, l: 3 }}>
         <div style={colStyles}>Col 1</div>
       </Col>

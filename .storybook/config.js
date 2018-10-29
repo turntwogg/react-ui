@@ -7,11 +7,6 @@ function loadStories() {
   req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(story => (
-  <ThemeProvider>
-    <Reset />
-    <Body>{story()}</Body>
-  </ThemeProvider>
-));
+addDecorator(story => <ThemeProvider>{story()}</ThemeProvider>);
 
 configure(loadStories, module);

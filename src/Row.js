@@ -1,21 +1,29 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import withTheme from './withTheme';
+import useTheme from './useTheme';
 
-const Row = ({ children, className, theme, ...rest }) => (
-  <div className={classNames('row', className)} {...rest}>
-    {children}
-    <style jsx>{`
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: ${theme.baseSpacingUnit / -2}px;
-        margin-bottom: -${theme.baseSpacingUnit}px;
-        margin-left: ${theme.baseSpacingUnit / -2}px;
-      }
-    `}</style>
-  </div>
-);
+const Row = ({ children, className, gutter, ...rest }) => {
+  const theme = useTheme();
+  const spacing = gutter || theme.baseSpacingUnit / 2;
+  return (
+    <div className={classNames('row', className)} {...rest}>
+      {React.Children.map(children, child =>
+        React.cloneElement(child, { gutter: spacing }),
+      )}
+      <style jsx>{`
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          margin-right: -${spacing}px;
+          margin-bottom: -${theme.baseSpacingUnit}px;
+          margin-left: -${spacing}px;
+        }
+      `}</style>
+    </div>
+  );
+};
 
-export default withTheme(Row);
+Row.defaultProps = {};
+
+export default Row;

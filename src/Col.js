@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { resolve } from 'styled-jsx/css';
 import PropTypes from 'prop-types';
 
-import withTheme from './withTheme';
+import useTheme from './useTheme';
 
 const getWidths = size => `
   flex-basis: ${(size / 12) * 100}%;
@@ -56,7 +56,8 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, className, sizes, theme, ...rest }) => {
+const Col = ({ children, className, noGutter, sizes, ...rest }) => {
+  const theme = useTheme();
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
   );
@@ -64,6 +65,7 @@ const Col = ({ children, className, sizes, theme, ...rest }) => {
   const resolved = getResponsiveStyles(theme);
   const rNames = resolved.map(r => r.className).join(' ');
   const rStyles = resolved.map(r => r.styles);
+  const gutter = noGutter ? 0 : theme.baseSpacingUnit / 2;
   return (
     <div className={classNames('col', className, cNames, rNames)} {...rest}>
       {children}
@@ -72,7 +74,7 @@ const Col = ({ children, className, sizes, theme, ...rest }) => {
           flex-basis: 100%;
           width: 100%;
           margin-bottom: ${theme.baseSpacingUnit}px;
-          padding: 0 ${theme.baseSpacingUnit / 2}px;
+          padding: 0 ${gutter}px;
         }
       `}</style>
       {rStyles.map(style => style)}
@@ -88,4 +90,4 @@ Col.propTypes = {
   sizes: PropTypes.object,
 };
 
-export default withTheme(Col);
+export default Col;
