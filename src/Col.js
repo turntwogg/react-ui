@@ -56,7 +56,7 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, className, noGutter, sizes, ...rest }) => {
+const Col = ({ children, className, gutter, sizes, ...rest }) => {
   const theme = useTheme();
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
@@ -65,7 +65,6 @@ const Col = ({ children, className, noGutter, sizes, ...rest }) => {
   const resolved = getResponsiveStyles(theme);
   const rNames = resolved.map(r => r.className).join(' ');
   const rStyles = resolved.map(r => r.styles);
-  const gutter = noGutter ? 0 : theme.baseSpacingUnit / 2;
   return (
     <div className={classNames('col', className, cNames, rNames)} {...rest}>
       {children}
@@ -73,7 +72,6 @@ const Col = ({ children, className, noGutter, sizes, ...rest }) => {
         .col {
           flex-basis: 100%;
           width: 100%;
-          margin-bottom: ${theme.baseSpacingUnit}px;
           padding: 0 ${gutter}px;
         }
       `}</style>

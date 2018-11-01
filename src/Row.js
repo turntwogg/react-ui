@@ -5,7 +5,8 @@ import useTheme from './useTheme';
 
 const Row = ({ children, className, gutter, ...rest }) => {
   const theme = useTheme();
-  const spacing = gutter || theme.baseSpacingUnit / 2;
+  const defaultGutter = theme.baseSpacingUnit / 2;
+  const spacing = gutter !== null ? gutter : defaultGutter;
   return (
     <div className={classNames('row', className)} {...rest}>
       {React.Children.map(children, child =>
@@ -16,14 +17,11 @@ const Row = ({ children, className, gutter, ...rest }) => {
           display: flex;
           flex-wrap: wrap;
           margin-right: -${spacing}px;
-          margin-bottom: -${theme.baseSpacingUnit}px;
           margin-left: -${spacing}px;
         }
       `}</style>
     </div>
   );
 };
-
-Row.defaultProps = {};
 
 export default Row;
