@@ -7,7 +7,7 @@ const colStyles = { backgroundColor: '#ccc' };
 
 storiesOf('Grid', module).add('Default', () => (
   <Container>
-    <Row gutter={0}>
+    <Row>
       <Col sizes={{ sm: 4, m: 6, l: 3 }}>
         <div style={colStyles}>Col 1</div>
       </Col>
