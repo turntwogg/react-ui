@@ -14,34 +14,47 @@
     "type": "git",
     "url": "git+https://github.com/turntwogg/react-ui.git"
   },
-  "files": ["dist/", "README.md", "package.json"],
-  "keywords": ["react", "react ui", "styled-jsx"],
+  "files": [
+    "dist/",
+    "README.md",
+    "package.json"
+  ],
+  "keywords": [
+    "react",
+    "react ui",
+    "styled-jsx"
+  ],
   "author": "drewbolles@gmail.com",
   "license": "ISC",
-  "browserslist": ["> 1%", "last 1 version"],
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "bugs": {
     "url": "https://github.com/turntwogg/react-ui/issues"
   },
   "homepage": "https://github.com/turntwogg/react-ui#readme",
   "dependencies": {
     "classnames": "^2.2.6",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@storybook/addon-actions": "^4.0.0",
-    "@storybook/addon-links": "^4.0.0",
-    "@storybook/addons": "^4.0.0",
-    "@storybook/react": "^4.0.0",
-    "babel-loader": "^8.0.4",
+    "@storybook/addon-actions": "^4.1.18",
+    "@storybook/addon-links": "^4.1.18",
+    "@storybook/addons": "^4.1.18",
+    "@storybook/react": "^4.1.18",
+    "babel-loader": "^8.0.6",
     "del-cli": "^1.1.0",
-    "react": "^16.7.0-alpha.0",
-    "react-dom": "^16.7.0-alpha.0",
-    "styled-jsx": "^3.1.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-jsx": "^3.2.1"
   },
   "peerDependencies": {
     "react": "^16.7.0-alpha.0",
