@@ -73,9 +73,10 @@ const Col = ({ children, className, gutter, sizes, ...rest }) => {
           flex-basis: 100%;
           width: 100%;
           padding: 0 ${gutter}px;
+          box-sizing: border-box;
         }
       `}</style>
-      {rStyles.map(style => style)}
+      {rStyles.map((style, key) => React.cloneElement(style, { key }))}
     </div>
   );
 };
