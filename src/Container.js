@@ -15,6 +15,12 @@ const Container = ({ children, ...rest }) => {
           padding-right: ${(theme.baseSpacingUnit * 2) / 3}px;
           padding-left: ${(theme.baseSpacingUnit * 2) / 3}px;
         }
+        @media (min-width: ${theme.breakpoints.m}px) {
+          .container {
+            padding-right: ${theme.baseSpacingUnit}px;
+            padding-left: ${theme.baseSpacingUnit}px;
+          }
+        }
       `}</style>
     </div>
   );
