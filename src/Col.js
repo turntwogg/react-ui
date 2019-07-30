@@ -7,7 +7,7 @@ import useTheme from './useTheme';
 
 const getWidths = size => `
   flex-basis: ${(size / 12) * 100}%;
-  width: ${(size / 12) * 100}%;
+  max-width: ${(size / 12) * 100}%;
 `;
 
 const getResponsiveStyles = theme => {
