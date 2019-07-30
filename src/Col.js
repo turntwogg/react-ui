@@ -56,7 +56,7 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, className, gutter, sizes, ...rest }) => {
+const Col = ({ children, className, gutter, sizes = {}, ...rest }) => {
   const theme = useTheme();
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
@@ -70,8 +70,7 @@ const Col = ({ children, className, gutter, sizes, ...rest }) => {
       {children}
       <style jsx>{`
         .col {
-          flex-basis: 0;
-          flex-grow: 1;
+          flex: 1 0 100%;
           max-width: 100%;
           padding: 0 ${gutter}px;
           box-sizing: border-box;
@@ -80,10 +79,6 @@ const Col = ({ children, className, gutter, sizes, ...rest }) => {
       {rStyles.map((style, key) => React.cloneElement(style, { key }))}
     </div>
   );
-};
-
-Col.defaultProps = {
-  sizes: {},
 };
 
 Col.propTypes = {
