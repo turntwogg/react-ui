@@ -1,6 +1,6 @@
 {
   "name": "@turntwo/react-ui",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "Reusable React UI components",
   "main": "dist/index.js",
   "scripts": {
