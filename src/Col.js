@@ -70,7 +70,8 @@ const Col = ({ children, className, gutter, sizes, ...rest }) => {
       {children}
       <style jsx>{`
         .col {
-          flex: 1 0 0;
+          flex-basis: 0;
+          flex-grow: 1;
           max-width: 100%;
           padding: 0 ${gutter}px;
           box-sizing: border-box;
