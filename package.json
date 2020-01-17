@@ -4,7 +4,9 @@
   "description": "Reusable React UI components",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run clean && mkdir dist && babel src -d dist --extensions '.ts,.tsx'",
+    "build": "babel src -d dist --extensions '.ts,.tsx' -s",
+    "prebuild": "npm run clean && mkdir dist",
+    "postbuild": "tsc --emitDeclarationOnly",
     "clean": "del-cli dist/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -52,6 +54,7 @@
     "@storybook/addon-links": "^4.1.18",
     "@storybook/addons": "^4.1.18",
     "@storybook/react": "^4.1.18",
+    "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "@types/styled-jsx": "^2.2.8",
