@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import { resolve } from 'styled-jsx/css';
 
 import useTheme from './useTheme';
+import { Theme } from './theme';
 
-const getResponsiveStyles = (theme: object) => {
+const getResponsiveStyles = (theme: Theme) => {
   const bps = Object.keys(theme.breakpoints);
   return bps.map(
     bp => resolve`
@@ -33,9 +34,9 @@ const getResponsiveStyles = (theme: object) => {
 };
 
 export interface Props {
-  children: object;
+  children: React.ReactNode;
   hidden: boolean;
-  visible: array;
+  visible?: string[];
 }
 
 const Visibility = ({
@@ -44,7 +45,7 @@ const Visibility = ({
   visible = [],
   ...rest
 }: Props) => {
-  const theme = useTheme();
+  const theme: Theme = useTheme();
   const hiddenClass = Array.isArray(hidden)
     ? hidden
         .filter(h => theme.breakpoints.hasOwnProperty(h))

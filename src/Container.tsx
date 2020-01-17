@@ -1,13 +1,14 @@
 import React from 'react';
 
 import useTheme from './useTheme';
+import { Theme } from './theme';
 
 export interface Props {
-  children: object;
+  children: React.ReactNode;
 }
 
 const Container = ({ children, ...rest }: Props) => {
-  const theme = useTheme();
+  const theme: Theme = useTheme();
   return (
     <div className="container" {...rest}>
       {children}

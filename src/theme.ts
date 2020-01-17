@@ -1,4 +1,19 @@
-const theme = {
+export interface Theme {
+  baseFontSize: number;
+  baseSpacingUnit: number;
+  maxWidth: number;
+  fonts: {
+    [key: string]: string;
+  };
+  breakpoints: {
+    [key: string]: number;
+  };
+  colors: {
+    [key: string]: string;
+  };
+}
+
+const theme: Theme = {
   baseFontSize: 16,
   baseSpacingUnit: 24,
   maxWidth: 1200,

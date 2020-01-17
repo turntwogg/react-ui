@@ -2,11 +2,11 @@ import React from 'react';
 
 import ThemeContext from './ThemeContext';
 
-import defaultTheme from './theme';
+import defaultTheme, { Theme } from './theme';
 
 export interface Props {
-  children: object;
-  theme: object;
+  children: React.ReactNode;
+  theme?: object; // should this be Theme? I really don't care what it is, it doesn't have to be exactly the theme shape
 }
 
 const ThemeProvider = ({ children, theme = {} }: Props) => {
