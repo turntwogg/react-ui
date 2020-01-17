@@ -1,16 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import { resolve } from 'styled-jsx/css';
-import PropTypes from 'prop-types';
 
 import useTheme from './useTheme';
 
-const getWidths = size => `
+const getWidths = (size: number) => `
   flex-basis: ${(size / 12) * 100}%;
   max-width: ${(size / 12) * 100}%;
 `;
 
-const getResponsiveStyles = theme => {
+const getResponsiveStyles = (theme: object) => {
   const bps = Object.keys(theme.breakpoints);
   return bps.map(
     bp => resolve`
@@ -56,7 +55,20 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, className, gutter, sizes = {}, ...rest }) => {
+interface ColProps {
+  children: object;
+  className?: string;
+  gutter?: number;
+  sizes?: object;
+}
+
+const Col = ({
+  children,
+  className,
+  gutter,
+  sizes = {},
+  ...rest
+}: ColProps) => {
   const theme = useTheme();
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
@@ -79,10 +91,6 @@ const Col = ({ children, className, gutter, sizes = {}, ...rest }) => {
       {rStyles.map((style, key) => React.cloneElement(style, { key }))}
     </div>
   );
-};
-
-Col.propTypes = {
-  sizes: PropTypes.object,
 };
 
 export default Col;
