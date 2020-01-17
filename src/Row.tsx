@@ -3,7 +3,13 @@ import classNames from 'classnames';
 
 import useTheme from './useTheme';
 
-const Row = ({ children, className, gutter, ...rest }) => {
+export interface Props {
+  children: object;
+  className?: string;
+  gutter?: number;
+}
+
+const Row = ({ children, className, gutter, ...rest }: Props) => {
   const theme = useTheme();
   const defaultGutter = theme.baseSpacingUnit / 2;
   const spacing = gutter !== null ? gutter : defaultGutter;
@@ -23,10 +29,6 @@ const Row = ({ children, className, gutter, ...rest }) => {
       `}</style>
     </div>
   );
-};
-
-Row.defaultProps = {
-  gutter: null,
 };
 
 export default Row;
