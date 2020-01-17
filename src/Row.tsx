@@ -10,7 +10,7 @@ export interface Props {
   gutter?: number;
 }
 
-const Row = ({ children, className, gutter, ...rest }: Props) => {
+const Row = ({ children, className, gutter = null, ...rest }: Props) => {
   const theme: Theme = useTheme();
   const defaultGutter = theme.baseSpacingUnit / 2;
   const spacing = gutter !== null ? gutter : defaultGutter;
