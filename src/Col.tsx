@@ -74,8 +74,15 @@ interface StyleProps {
   key: number;
 }
 
-const Col = ({ children, className, gutter, sizes = {}, ...rest }: Props) => {
+const Col = ({
+  children,
+  className,
+  gutter: gutterProp,
+  sizes = {},
+  ...rest
+}: Props) => {
   const theme: Theme = useTheme();
+  const gutter = gutterProp || theme.baseSpacingUnit / 2;
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
   );
