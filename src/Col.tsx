@@ -1,16 +1,21 @@
 import React from 'react';
 import classNames from 'classnames';
 import { resolve } from 'styled-jsx/css';
-import PropTypes from 'prop-types';
 
 import useTheme from './useTheme';
+import { Theme } from './theme';
 
-const getWidths = size => `
+interface ResolveProps {
+  className: string;
+  styles: string;
+}
+
+const getWidths = (size: number): string => `
   flex-basis: ${(size / 12) * 100}%;
   max-width: ${(size / 12) * 100}%;
 `;
 
-const getResponsiveStyles = theme => {
+const getResponsiveStyles = (theme: Theme): ResolveProps[] => {
   const bps = Object.keys(theme.breakpoints);
   return bps.map(
     bp => resolve`
@@ -56,15 +61,28 @@ const getResponsiveStyles = theme => {
   );
 };
 
-const Col = ({ children, className, gutter, sizes = {}, ...rest }) => {
-  const theme = useTheme();
+export interface Props {
+  children: React.ReactNode;
+  className?: string;
+  gutter?: number;
+  sizes?: {
+    [key: string]: number;
+  };
+}
+
+interface StyleProps {
+  key: number;
+}
+
+const Col = ({ children, className, gutter, sizes = {}, ...rest }: Props) => {
+  const theme: Theme = useTheme();
   const bps = Object.keys(sizes).filter(bp =>
     theme.breakpoints.hasOwnProperty(bp),
   );
-  const cNames = bps.map(bp => `col--${bp}-${sizes[bp]}`).join(' ');
-  const resolved = getResponsiveStyles(theme);
-  const rNames = resolved.map(r => r.className).join(' ');
-  const rStyles = resolved.map(r => r.styles);
+  const cNames: string = bps.map(bp => `col--${bp}-${sizes[bp]}`).join(' ');
+  const resolved: ResolveProps[] = getResponsiveStyles(theme);
+  const rNames: string = resolved.map(r => r.className).join(' ');
+  const rStyles: string[] = resolved.map(r => r.styles);
   return (
     <div className={classNames('col', className, cNames, rNames)} {...rest}>
       {children}
@@ -76,13 +94,11 @@ const Col = ({ children, className, gutter, sizes = {}, ...rest }) => {
           box-sizing: border-box;
         }
       `}</style>
-      {rStyles.map((style, key) => React.cloneElement(style, { key }))}
+      {rStyles.map((rStyle: unknown, key) =>
+        React.cloneElement(rStyle as React.ReactElement<StyleProps>, { key }),
+      )}
     </div>
   );
-};
-
-Col.propTypes = {
-  sizes: PropTypes.object,
 };
 
 export default Col;

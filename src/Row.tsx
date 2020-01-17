@@ -2,15 +2,22 @@ import React from 'react';
 import classNames from 'classnames';
 
 import useTheme from './useTheme';
+import { Theme } from './theme';
 
-const Row = ({ children, className, gutter, ...rest }) => {
-  const theme = useTheme();
+export interface Props {
+  children: React.ReactNode;
+  className?: string;
+  gutter?: number;
+}
+
+const Row = ({ children, className, gutter, ...rest }: Props) => {
+  const theme: Theme = useTheme();
   const defaultGutter = theme.baseSpacingUnit / 2;
   const spacing = gutter !== null ? gutter : defaultGutter;
 
   return (
     <div className={classNames('row', className)} {...rest}>
-      {React.Children.map(children, child =>
+      {React.Children.map(children as React.ReactElement[], child =>
         React.cloneElement(child, { gutter: spacing }),
       )}
       <style jsx>{`
@@ -23,10 +30,6 @@ const Row = ({ children, className, gutter, ...rest }) => {
       `}</style>
     </div>
   );
-};
-
-Row.defaultProps = {
-  gutter: null,
 };
 
 export default Row;
