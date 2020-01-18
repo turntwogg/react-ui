@@ -5,12 +5,31 @@ import useTheme from './useTheme';
 import { Theme } from './theme';
 
 export interface Props {
+  align: 'top' | 'bottom' | 'center';
   children: React.ReactNode;
   className?: string;
   gutter?: number;
 }
 
-const Row = ({ children, className, gutter, ...rest }: Props) => {
+enum Alignment {
+  Top = 'top',
+  Bottom = 'bottom',
+  Center = 'center',
+}
+
+const alignmentMap = {
+  top: 'flex-start',
+  bottom: 'flex-end',
+  center: 'center',
+};
+
+const Row = ({
+  align = Alignment.Top,
+  children,
+  className,
+  gutter,
+  ...rest
+}: Props) => {
   const theme: Theme = useTheme();
   const spacing =
     typeof gutter !== 'undefined' ? gutter : theme.baseSpacingUnit / 2;
@@ -26,6 +45,11 @@ const Row = ({ children, className, gutter, ...rest }: Props) => {
           flex-wrap: wrap;
           margin-right: -${spacing}px;
           margin-left: -${spacing}px;
+        }
+      `}</style>
+      <style jsx>{`
+        .row {
+          align-items: ${alignmentMap[align]};
         }
       `}</style>
     </div>
