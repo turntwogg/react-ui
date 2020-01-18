@@ -7,7 +7,7 @@ import { Theme } from './theme';
 export interface Props {
   children: React.ReactNode;
   className?: string;
-  gutter?: number;
+  gutter?: number | null;
 }
 
 const Row = ({ children, className, gutter = null, ...rest }: Props) => {
