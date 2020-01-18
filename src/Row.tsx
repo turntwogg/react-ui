@@ -7,13 +7,13 @@ import { Theme } from './theme';
 export interface Props {
   children: React.ReactNode;
   className?: string;
-  gutter?: number | null;
+  gutter?: number;
 }
 
-const Row = ({ children, className, gutter = null, ...rest }: Props) => {
+const Row = ({ children, className, gutter, ...rest }: Props) => {
   const theme: Theme = useTheme();
-  const defaultGutter = theme.baseSpacingUnit / 2;
-  const spacing = gutter !== null ? gutter : defaultGutter;
+  const spacing =
+    typeof gutter !== 'undefined' ? gutter : theme.baseSpacingUnit / 2;
 
   return (
     <div className={classNames('row', className)} {...rest}>
