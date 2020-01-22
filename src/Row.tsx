@@ -4,17 +4,21 @@ import classNames from 'classnames';
 import useTheme from './useTheme';
 import { Theme } from './theme';
 
-export interface Props {
-  align: 'top' | 'bottom' | 'center';
-  children: React.ReactNode;
-  className?: string;
-  gutter?: number;
-}
-
 enum Alignment {
   Top = 'top',
   Bottom = 'bottom',
   Center = 'center',
+}
+
+export interface Props {
+  align: Alignment;
+  children: React.ReactElement;
+  className?: string;
+  gutter?: number;
+}
+
+export interface ChildProps {
+  gutter: number;
 }
 
 const alignmentMap = {
@@ -27,24 +31,26 @@ const Row = ({
   align = Alignment.Top,
   children,
   className,
-  gutter,
+  gutter: gutterProp,
   ...rest
 }: Props) => {
   const theme: Theme = useTheme();
-  const spacing =
-    typeof gutter !== 'undefined' ? gutter : theme.baseSpacingUnit / 2;
+  const gutter: number =
+    typeof gutterProp !== 'undefined' ? gutterProp : theme.baseSpacingUnit / 2;
+  const validChildren = React.Children.toArray(children).filter(child =>
+    React.isValidElement(child),
+  );
+  const childProps: ChildProps = { gutter };
 
   return (
     <div className={classNames('row', className)} {...rest}>
-      {React.Children.map(children as React.ReactElement[], child =>
-        React.cloneElement(child, { gutter: spacing }),
-      )}
+      {validChildren.map(child => React.cloneElement(child, childProps))}
       <style jsx>{`
         .row {
           display: flex;
           flex-wrap: wrap;
-          margin-right: -${spacing}px;
-          margin-left: -${spacing}px;
+          margin-right: -${gutter}px;
+          margin-left: -${gutter}px;
         }
       `}</style>
       <style jsx>{`
