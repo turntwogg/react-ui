@@ -43,7 +43,12 @@ const Row = ({
   const childProps: ChildProps = { gutter };
 
   return (
-    <div className={classNames('row', className)} {...rest}>
+    <div
+      className={classNames('row', className, {
+        [`row--align-${align}`]: align,
+      })}
+      {...rest}
+    >
       {validChildren.map(child => React.cloneElement(child, childProps))}
       <style jsx>{`
         .row {
@@ -52,10 +57,14 @@ const Row = ({
           margin-right: -${gutter}px;
           margin-left: -${gutter}px;
         }
-      `}</style>
-      <style jsx>{`
-        .row {
-          align-items: ${alignmentMap[align]};
+        .row--align-top {
+          align-items: ${alignmentMap[Alignment.Top]};
+        }
+        .row--align-center {
+          align-items: ${alignmentMap[Alignment.Center]};
+        }
+        .row--align-bottom {
+          align-items: ${alignmentMap[Alignment.Bottom]};
         }
       `}</style>
     </div>
