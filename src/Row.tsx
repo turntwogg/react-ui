@@ -49,7 +49,9 @@ const Row = ({
       })}
       {...rest}
     >
-      {validChildren.map(child => React.cloneElement(child, childProps))}
+      {validChildren.map(child =>
+        React.cloneElement(child as React.ReactElement, childProps),
+      )}
       <style jsx>{`
         .row {
           display: flex;
