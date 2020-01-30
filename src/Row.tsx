@@ -11,8 +11,8 @@ enum Alignment {
 }
 
 export interface Props {
-  align: Alignment;
-  children: React.ReactElement;
+  align?: Alignment;
+  children: React.ReactElement[];
   className?: string;
   gutter?: number;
 }
@@ -43,15 +43,18 @@ const Row = ({
   const childProps: ChildProps = { gutter };
 
   return (
-    <div
-      className={classNames('row', className, {
-        [`row--align-${align}`]: align,
-      })}
-      {...rest}
-    >
-      {validChildren.map(child =>
-        React.cloneElement(child as React.ReactElement, childProps),
-      )}
+    <>
+      <div
+        className={classNames('row', className, {
+          [`row--align-${align}`]: align,
+        })}
+        {...rest}
+      >
+        {validChildren.map(child =>
+          React.cloneElement(child as React.ReactElement, childProps),
+        )}
+      </div>
+
       <style jsx>{`
         .row {
           display: flex;
@@ -69,7 +72,7 @@ const Row = ({
           align-items: ${alignmentMap[Alignment.Bottom]};
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
