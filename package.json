@@ -7,7 +7,6 @@
   "scripts": {
     "build": "rollup -c",
     "prebuild": "npm run clean && mkdir dist",
-    "old-postbuild": "tsc --emitDeclarationOnly",
     "clean": "del-cli dist/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -42,39 +41,43 @@
   "homepage": "https://github.com/turntwogg/react-ui#readme",
   "dependencies": {
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "styled-jsx": "^3.2.4"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@rollup/plugin-replace": "^2.3.0",
-    "@rollup/plugin-typescript": "^3.0.0",
-    "@storybook/addon-actions": "^4.1.18",
-    "@storybook/addon-links": "^4.1.18",
-    "@storybook/addons": "^4.1.18",
-    "@storybook/react": "^4.1.18",
+    "@storybook/addon-actions": "^5.3.9",
+    "@storybook/addon-links": "^5.3.9",
+    "@storybook/addons": "^5.3.9",
+    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/react": "^5.3.9",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "@types/styled-jsx": "^2.2.8",
+    "@types/webpack": "^4.41.3",
     "babel-loader": "^8.0.6",
     "del-cli": "^3.0.0",
+    "fork-ts-checker-webpack-plugin": "^4.0.3",
+    "next": "^9.2.1",
     "react": "^16.12.0",
+    "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.12.0",
     "rollup": "^1.30.1",
     "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-terser": "^5.2.0",
-    "styled-jsx": "^3.2.4",
+    "ts-loader": "^6.2.1",
     "typescript": "^3.7.5"
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "styled-jsx": "^3.2.1"
+    "styled-jsx": "^3.2.4"
   }
 }
