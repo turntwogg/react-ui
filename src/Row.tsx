@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import css from 'styled-jsx/css';
 
 import useTheme from './useTheme';
 import { Theme } from './theme';
@@ -14,7 +15,7 @@ export interface Props {
   align?: Alignment;
   children: React.ReactElement[];
   className?: string;
-  gutter?: number;
+  gutter: number | undefined;
 }
 
 export interface ChildProps {
@@ -26,6 +27,26 @@ const alignmentMap = {
   bottom: 'flex-end',
   center: 'center',
 };
+
+function getStyles(gutter) {
+  return css.resolve`
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -${gutter}px;
+      margin-left: -${gutter}px;
+    }
+    .row--align-top {
+      align-items: ${alignmentMap[Alignment.Top]};
+    }
+    .row--align-center {
+      align-items: ${alignmentMap[Alignment.Center]};
+    }
+    .row--align-bottom {
+      align-items: ${alignmentMap[Alignment.Bottom]};
+    }
+  `;
+}
 
 const Row = ({
   align = Alignment.Top,
@@ -42,37 +63,20 @@ const Row = ({
   );
   const childProps: ChildProps = { gutter };
 
-  return (
-    <>
-      <div
-        className={classNames('row', className, {
-          [`row--align-${align}`]: align,
-        })}
-        {...rest}
-      >
-        {validChildren.map(child =>
-          React.cloneElement(child as React.ReactElement, childProps),
-        )}
-      </div>
+  const { className: cName, styles } = getStyles(gutter);
 
-      <style jsx>{`
-        .row {
-          display: flex;
-          flex-wrap: wrap;
-          margin-right: -${gutter}px;
-          margin-left: -${gutter}px;
-        }
-        .row--align-top {
-          align-items: ${alignmentMap[Alignment.Top]};
-        }
-        .row--align-center {
-          align-items: ${alignmentMap[Alignment.Center]};
-        }
-        .row--align-bottom {
-          align-items: ${alignmentMap[Alignment.Bottom]};
-        }
-      `}</style>
-    </>
+  return (
+    <div
+      className={classNames('row', cName, className, {
+        [`row--align-${align}`]: align,
+      })}
+      {...rest}
+    >
+      {validChildren.map(child =>
+        React.cloneElement(child as React.ReactElement, childProps),
+      )}
+      {styles}
+    </div>
   );
 };
 

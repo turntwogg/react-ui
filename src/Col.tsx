@@ -64,7 +64,7 @@ const getResponsiveStyles = (theme: Theme): ResolveProps[] => {
 export interface Props {
   children: React.ReactNode;
   className?: string;
-  gutter: number;
+  gutter?: number;
   sizes?: {
     [key: string]: number;
   };
