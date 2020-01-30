@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { resolve } from 'styled-jsx/css';
+import css from 'styled-jsx/css';
 
 import useTheme from './useTheme';
 import { Theme } from './theme';
@@ -18,46 +18,46 @@ const getWidths = (size: number): string => `
 const getResponsiveStyles = (theme: Theme): ResolveProps[] => {
   const bps = Object.keys(theme.breakpoints);
   return bps.map(
-    bp => resolve`
-    @media (min-width: ${theme.breakpoints[bp]}px) {
-      .col--${bp}-1 {
-        ${getWidths(1)}
+    bp => css.resolve`
+      @media (min-width: ${theme.breakpoints[bp]}px) {
+        .col--${bp}-1 {
+          ${getWidths(1)}
+        }
+        .col--${bp}-2 {
+          ${getWidths(2)}
+        }
+        .col--${bp}-3 {
+          ${getWidths(3)}
+        }
+        .col--${bp}-4 {
+          ${getWidths(4)}
+        }
+        .col--${bp}-5 {
+          ${getWidths(5)}
+        }
+        .col--${bp}-6 {
+          ${getWidths(6)}
+        }
+        .col--${bp}-7 {
+          ${getWidths(7)}
+        }
+        .col--${bp}-8 {
+          ${getWidths(8)}
+        }
+        .col--${bp}-9 {
+          ${getWidths(9)}
+        }
+        .col--${bp}-10 {
+          ${getWidths(10)}
+        }
+        .col--${bp}-11 {
+          ${getWidths(11)}
+        }
+        .col--${bp}-12 {
+          ${getWidths(12)}
+        }
       }
-      .col--${bp}-2 {
-        ${getWidths(2)}
-      }
-      .col--${bp}-3 {
-        ${getWidths(3)}
-      }
-      .col--${bp}-4 {
-        ${getWidths(4)}
-      }
-      .col--${bp}-5 {
-        ${getWidths(5)}
-      }
-      .col--${bp}-6 {
-        ${getWidths(6)}
-      }
-      .col--${bp}-7 {
-        ${getWidths(7)}
-      }
-      .col--${bp}-8 {
-        ${getWidths(8)}
-      }
-      .col--${bp}-9 {
-        ${getWidths(9)}
-      }
-      .col--${bp}-10 {
-        ${getWidths(10)}
-      }
-      .col--${bp}-11 {
-        ${getWidths(11)}
-      }
-      .col--${bp}-12 {
-        ${getWidths(12)}
-      }
-    }
-  `,
+    `,
   );
 };
 

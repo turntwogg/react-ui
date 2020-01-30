@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { resolve } from 'styled-jsx/css';
+import css from 'styled-jsx/css';
 
 import useTheme from './useTheme';
 import { Theme } from './theme';
@@ -8,7 +8,7 @@ import { Theme } from './theme';
 const getResponsiveStyles = (theme: Theme) => {
   const bps = Object.keys(theme.breakpoints);
   return bps.map(
-    bp => resolve`
+    bp => css.resolve`
       @media (min-width: ${theme.breakpoints[bp]}px) {
         .visibility-visible-${bp} {
           position: static;
@@ -29,7 +29,8 @@ const getResponsiveStyles = (theme: Theme) => {
           width: 1px;
           white-space: nowrap;
         }
-      }`,
+      }
+    `,
   );
 };
 
