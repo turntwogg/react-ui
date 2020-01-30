@@ -1,5 +1,5 @@
 {
-  "include": ["src"],
+  "files": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "declaration": true,
@@ -8,7 +8,9 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "module": "es6",
     "target": "es5",
     "jsx": "react",
     "esModuleInterop": true,
