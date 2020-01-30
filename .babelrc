@@ -4,5 +4,8 @@
     ["@babel/preset-env", { "modules": false }],
     "@babel/preset-typescript"
   ],
-  "plugins": ["@babel/plugin-proposal-object-rest-spread", "styled-jsx/babel"]
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    ["styled-jsx/babel", { "optimizeForSpeed": false }]
+  ]
 }
