@@ -1,5 +1,5 @@
 {
-  "files": ["src"],
+  "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "declaration": true,
